@@ -24,6 +24,8 @@ public class PlanedemoApplicationTests {
     private DataSource dataSource;
     @Resource
     private AdminService adminService;
+    @Resource
+    private LeaveServices leaveServices;
 
     @Test
     public void contextLoads() {
@@ -62,6 +64,16 @@ public class PlanedemoApplicationTests {
         String shijian="2018-12-12";
         Date shijian2=(new SimpleDateFormat("yyyy-MM-dd")).format(shijain);*/
         System.out.println(adminService.updateAdmin(new Admin(5,0,"OK",0,"ok",null,0)));
+    }
+    @Test
+    public void testSelect(){
+        Leave leave=new Leave();
+        leave.setLeaveId(6);
+        leave.setLeaveStatus(4);
+        List<Leave> list=leaveServices.selectAllLeavte();
+        for(Leave l:list){
+            System.out.println(l);
+        }
     }
 
 }
