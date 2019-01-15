@@ -2,6 +2,8 @@ package com.bdqn.tangcco.planedemo;
 
 import com.bdqn.tangcco.planedemo.admin.adminService.AdminService;
 import com.bdqn.tangcco.planedemo.entity.Admin;
+import com.bdqn.tangcco.planedemo.entity.User;
+import com.bdqn.tangcco.planedemo.xi.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +21,8 @@ public class PlanedemoApplicationTests {
     private DataSource dataSource;
     @Resource
     private AdminService adminService;
-
+    @Resource
+    private UserService userService;
     @Test
     public void contextLoads() {
         try {
@@ -58,6 +61,26 @@ public class PlanedemoApplicationTests {
         Date shijian2=(new SimpleDateFormat("yyyy-MM-dd")).format(shijain);*/
         System.out.println(adminService.updateAdmin(new Admin(5,0,"OK",0,"ok",null,0)));
     }
-
+    //User
+    @Test
+     public void testqueryUser(){
+        System.out.println(userService.queryUser());
+    }
+    @Test
+    public void testqueryByID(){
+        System.out.println(userService.queryByUserId(4));
+    }
+    @Test
+    public void testaddUser(){
+        System.out.println(userService.addUser(new User(1,"1445646545","564564564",1,null,0)));
+    }
+    @Test
+    public void testdeleteUser(){
+        System.out.println(userService.deleteUser(5));
+    }
+    @Test
+    public void testUpdateUser(){
+        System.out.println(userService.updateUser(new User(9,"999999999","55555555",1,null,0)));
+    }
 }
 
