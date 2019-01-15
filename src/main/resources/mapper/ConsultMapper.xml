@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bdqn.tangcco.planedemo.xi.dao.ConsultDao">
+   <!-- //查询所有咨询信息
+    List<Consult> selectAllC();
+    //新增查询信息
+    Integer addConsult(@Param("consult") Consult consult);
+    //根据Id删除咨询信息
+    Integer deleteConsult(@Param("consultId") Integer consultId);
+    //更新咨询状态
+    Integer updateConsultStatus(@Param("consult") Consult consult);-->
+   <select id="selectAllC" resultType="com.bdqn.tangcco.planedemo.entity.Consult">
+       select * from `Consult`
+   </select>
+
+</mapper>
