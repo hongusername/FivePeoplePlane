@@ -2,9 +2,11 @@ package com.bdqn.tangcco.planedemo;
 
 import com.bdqn.tangcco.planedemo.admin.adminService.AdminService;
 import com.bdqn.tangcco.planedemo.entity.Admin;
+import com.bdqn.tangcco.planedemo.entity.Consult;
 import com.bdqn.tangcco.planedemo.entity.Leave;
 import com.bdqn.tangcco.planedemo.kai.services.LeaveServices;
 import com.bdqn.tangcco.planedemo.entity.User;
+import com.bdqn.tangcco.planedemo.xi.service.ConsultServices;
 import com.bdqn.tangcco.planedemo.xi.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +28,8 @@ public class PlanedemoApplicationTests {
     private AdminService adminService;
     @Resource
     private LeaveServices leaveServices;
+    @Resource
+    private ConsultServices consultServices;
 
     @Test
     public void contextLoads() {
@@ -72,6 +76,13 @@ public class PlanedemoApplicationTests {
         leave.setLeaveStatus(4);
         List<Leave> list=leaveServices.selectAllLeavte();
         for(Leave l:list){
+            System.out.println(l);
+        }
+    }
+    @Test
+    public void testQueryAllCon(){
+        List<Consult> list=consultServices.selectAllC();
+        for (Consult l:list){
             System.out.println(l);
         }
     }
