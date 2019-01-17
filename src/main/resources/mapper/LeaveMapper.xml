@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bdqn.tangcco.planedemo.kai.dao.LeaveDao">
+    <!--//新增留言
+    Integer addLeaveText(@Param("leave") Leave leave);
+    //根据留言Id删除指定留言
+    Integer deleteLeaveId(@Param("leaveId")Integer leaveId);
+    //修改留言状态
+    Integer updateLeaveStatus(@Param("leaveStatusId")Integer leaveStatusId);
+    //产看所有留言
+    List<Leave> selectAllLeavte();-->
+    <insert id="addLeaveText" parameterType="com.bdqn.tangcco.planedemo.entity.Leave">
+        INSERT INTO `Leave` VALUES(NULL,#{leave.leaveText},#{leave.userId},NULL,#{leave.leaveStatus})
+    </insert>
+    <delete id="deleteLeaveId" parameterType="int">
+        delete from `Leave` where leaveId=#{leaveId}
+    </delete>
+    <update id="updateLeaveStatus" parameterType="com.bdqn.tangcco.planedemo.entity.Leave">
+        update `Leave` set leaveStatus=#{leave.leaveStatus} where leaveId=#{leave.leaveId}
+    </update>
+    <select id="selectAllLeavte" resultType="com.bdqn.tangcco.planedemo.entity.Leave">
+        select * from   `Leave`
+    </select>
+
+</mapper>

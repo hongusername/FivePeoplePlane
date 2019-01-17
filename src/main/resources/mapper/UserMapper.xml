@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bdqn.tangcco.planedemo.xi.dao.UserDao">
+
+
+    <select id="queryUser" resultType="com.bdqn.tangcco.planedemo.entity.User">
+        select * from User
+    </select>
+
+  <select id="queryByUserId" resultType="com.bdqn.tangcco.planedemo.entity.User">
+        select * from User where userId=#{id}
+    </select>
+
+    <insert id="addUser">
+           insert into User values (null,#{userPhone},#{userPassword},#{userType},now(),#{userStatus})
+   </insert>
+
+    <delete id="deleteUser">
+        delete from User where UserId=#{id}
+  </delete>
+
+    <update id="updateUser">
+
+      update User set  userPhone=#{userPhone},userPassword=#{userPassword},userType=#{userType},userDate=#{userDate},userStatus=#{userStatus}   where userId=#{userId}
+
+   </update>
+
+
+
+</mapper>

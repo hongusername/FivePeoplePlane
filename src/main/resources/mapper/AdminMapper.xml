@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bdqn.tangcco.planedemo.admin.dao.AdminDao">
+
+
+    <select id="queryAdmin" resultType="com.bdqn.tangcco.planedemo.entity.Admin">
+        select * from Admin
+    </select>
+
+
+   <select id="queryByAdminId" resultType="com.bdqn.tangcco.planedemo.entity.Admin">
+        select * from Admin where adminId=#{id}
+    </select>
+
+
+       <insert id="addAdmin">
+           insert into Admin values (null,#{adminGrade},#{adminName},#{adminPhone},#{adminPassword},now(),#{adminStatus})
+       </insert>
+
+
+          <delete id="deleteAdmin">
+              delete from Admin where adminId=#{id}
+          </delete>
+
+
+
+    <update id="updateAdmin">
+
+         update Admin set  adminGrade=#{adminGrade},adminName=#{adminName},adminPhone=#{adminPhone},adminPassword=#{adminPassword},adminTime=#{adminTime},adminStatus=#{adminStatus}   where adminId=#{adminId}
+
+    </update>
+
+
+
+
+</mapper>
