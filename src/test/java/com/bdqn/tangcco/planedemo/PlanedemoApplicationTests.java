@@ -86,6 +86,27 @@ public class PlanedemoApplicationTests {
             System.out.println(l);
         }
     }
+    @Test
+    public void testInsertCOnsult(){
+        Consult con=new Consult();
+        con.setConsultClause(12);
+        con.setConsultName("昔哥");
+        con.setConsultPhone("120");
+        con.setConsultText("我还能再抢救一下");
+        con.setUserId(2);
+        System.out.println( consultServices.addConsult(con));;
+    }
+    @Test
+    public void testDelete(){
+        System.out.println(consultServices.deleteConsult(14));
+    }
+    @Test
+    public void testUpdateConsult(){
+        Consult consult=new Consult();
+        consult.setConsultId(11);
+        consult.setConsultStatus(8);
+        System.out.println(consultServices.updateConsultStatus(consult));
+    }
 
 }
 

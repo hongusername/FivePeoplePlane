@@ -12,5 +12,14 @@
    <select id="selectAllC" resultType="com.bdqn.tangcco.planedemo.entity.Consult">
        select * from `Consult`
    </select>
+    <insert id="addConsult" parameterType="com.bdqn.tangcco.planedemo.entity.Consult">
+        INSERT INTO `Consult` VALUES(NULL,#{consult.consultName},#{consult.consultPhone},NULL,#{consult.consultClause},#{consult.consultText},#{consult.userId},NULL)
+    </insert>
+    <delete id="deleteConsult" parameterType="int">
+        delete from `Consult` where consultId=#{consultId}
+    </delete>
+    <update id="updateConsultStatus" parameterType="com.bdqn.tangcco.planedemo.entity.Consult">
+        update `Consult` set consultStatus=#{consult.consultStatus} where consultId=#{consult.consultId}
+    </update>
 
 </mapper>
