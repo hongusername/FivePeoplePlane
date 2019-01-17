@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bdqn.tangcco.planedemo.chen.dao.ClauseDao">
+    
+    <resultMap id="clauseMap" type="Clause">
+        <id property="ClauseId" column="ClauseId"></id>
+    <association property="laws" resultMap="lawsMap"></association>
+    </resultMap>
+    
+    <resultMap id="lawsMap" type="Laws">
+        <id property="lawsId" column="lawsId"></id>
+    </resultMap>
+
+    <select id="getClausesList" resultType="Clause">
+        select * from clause
+        <where>
+            <if test="clauseNumber!=0">
+                and lawsId = #{lawsId}
+            </if>
+
+            <if test="clauseNumber!=0">
+                and clauseNumber =#{clauseNumber}
+            </if>
+
+            <if test="clauseKeyword!='' and clauseKeyword !=null">
+                and clauseKeyword = #{clauseKeyword}
+            </if>
+
+        </where>
+    </select>
+
+    <update id="updateClause">
+        update clause
+        <set>
+            <if test="cateLogid!=0">
+                cateLogid = #{cateLogid},
+            </if>
+
+            <if test="lawsId!=0">
+                lawsId = #{lawsId},
+            </if>
+
+            <if test="clauseNumber!=0">
+                clauseNumber = #{clauseNumber},
+            </if>
+
+            <if test="clauseName!='' and clauseName!=null">
+                clauseName = #{clauseName},
+            </if>
+
+            <if test="clauseVersions!=0">
+                clauseVersions = #{clauseVersions},
+            </if>
+
+            <if test="claseTitle!='' and claseTitle !=null">
+                claseTitle = #{claseTitle},
+            </if>
+
+            <if test="clauseText!='' and clauseText!=null">
+                clauseText = #{clauseText},
+            </if>
+
+            <if test="clauseKeyword!='' and clauseKeyword!=null">
+                clauseKeyword = #{clauseKeyword},
+            </if>
+
+        </set>
+        where clauseId = #{clauseId}
+
+    </update>
+
+    <delete id="deleteClause">
+        delete from clause where clauseId = #{clauseId}
+    </delete>
+
+    <insert id="addClause">
+        insert into clause values(null,#{cateLogid},#{lawsId},#{clauseNumber},#{clauseName},#{clauseVersions},#{claseTitle},#{clauseText},#{clauseKeyword})
+    </insert>
+
+    <select id="queryCLause" resultMap="clauseMap">
+select * from clause where clauseId  = #{clauseId}
+    </select>
+
+
+</mapper>
