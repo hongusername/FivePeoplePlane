@@ -44,7 +44,9 @@
                 </tr>
                 </tbody>
             </table>
-            <div id="page" class="fenye"></div>
+            <div id="page" class="fenye">
+                <!--分页-->
+            </div>
         </div>
     </footer>
 </div>
@@ -57,9 +59,12 @@
         var laypage = layui.laypage;
         laypage.render({
             elem: 'page'
-            ,count: 100
+            ,count: total//总数
+            ,limit:pageSize//行数
+            ,curr:pageNum//页数
             ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
             ,jump: function(obj){
+
             }
         });
     })
