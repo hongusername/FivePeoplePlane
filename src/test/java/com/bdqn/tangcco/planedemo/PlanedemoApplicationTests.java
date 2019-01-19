@@ -108,5 +108,8 @@ public class PlanedemoApplicationTests {
         System.out.println(consultServices.updateConsultStatus(consult));
     }
 
+
+
+
 }
 

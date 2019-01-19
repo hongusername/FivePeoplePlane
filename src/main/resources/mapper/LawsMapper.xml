@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bdqn.tangcco.planedemo.shuo.dao.LawsDao">
+
+    <!--
+    List<Laws> queryAllLaws(Integer lawsPart, String lawsName);
+        boolean queryByLawsId(Integer lawsId);
+        Integer addLaws(@Param("laws") Laws laws);
+        Integer updateLaws(@Param("laws") Laws laws);
+        Integer deleteLaws(Integer lawsId);
+
+    -->
+    <select id="queryAllLaws" resultType="com.bdqn.tangcco.planedemo.entity.Laws">
+        SELECT * FROM laws
+        <where>
+            <if test="param1!='' and param1!=null">
+                and lawsId LIKE like concat('%',#{param1},'%')
+            </if>
+            <if test="param2!='' and param2!=null">
+                AND lawsName LIKE like concat('%',#{param2},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="queryByLawsId" resultType="Boolean">
+      select * from laws where lawId=#{param1}
+    </select>
+    <select id="queryOneByLawId" resultType="com.bdqn.tangcco.planedemo.entity.Laws" >
+      SELECT * FROM laws WHERE lawsId=#{lawId} LIMIT 1
+    </select>
+
+    <!--
+        private String lawsId;//部号别名
+        private Integer lawsPart;//部号
+        private String lawsVersion;//版本号R1/R2/R3等
+        private Integer lawsStatus;//名称
+        private String lawsName;//是否显示
+        private String lawsDownload;//下载链接
+        private String lawsState;//版本说明
+        private String lawsLogo;//logo_url
+        private String lawsFDBName;//法规FDB文件名称
+
+    -->
+    <insert id="addLaws" parameterType="com.bdqn.tangcco.planedemo.entity.Laws">
+
+      INSERT INTO laws VALUES (
+      #{laws.lawsId}
+      ,#{laws.lawsPart}
+      ,#{laws.lawsVersion}
+      ,#{laws.lawsStatus}
+      ,#{laws.lawsName}
+      ,#{laws.lawsDownload}
+      ,#{laws.lawsState}
+      ,#{laws.lawsLogo}
+      ,#{laws.lawsFDBName}
+      )
+    </insert>
+    <!--
+    lawsId      varchar(30) NOT NULL部号别名
+lawsPart        int(11) NOT NULL部号
+lawsVersion     varchar(11) NOT NULL版本号R1/R2/R3等
+lawsName        varchar(30) NOT NULL名称
+lawsStauts      int(11) NOT NULL是否显示
+lawsDownload        varchar(50) NOT NULL下载链接
+lawsState       varchar(100) NOT NULL版本说明
+lawsLogo        varchar(30) NOT NULLlogo_url
+lawsFDBName     varchar(30) NOT NULL法规FDB文件名称
+
+    -->
+    <update id="updateLaws" parameterType="com.bdqn.tangcco.planedemo.entity.Laws" >
+        update laws
+        <set>
+            <if test="laws!=null and laws!='' ">
+                #{laws.lawsId}
+                ,#{laws.lawsPart}
+                ,#{laws.lawsVersion}
+                ,#{laws.lawsStatus}
+                ,#{laws.lawsName}
+                ,#{laws.lawsDownload}
+                ,#{laws.lawsState}
+                ,#{laws.lawsLogo}
+                ,#{laws.lawsFDBName}
+            </if>
+        </set>
+    </update>
+    <delete id="deleteLaws" >
+        delete from laws where laws.lawsId=#{lawsId}
+    </delete>
+
+
+
+</mapper>
