@@ -72,5 +72,5 @@ public interface LawsDao {
     * 2019年1月19日14点37分
     * 查询所有主键
     * */
-    List<String> queryAllLawsId();
+    List<Laws> queryAllLawsId();
 }

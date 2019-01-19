@@ -87,7 +87,7 @@ lawsFDBName     varchar(30) NOT NULL法规FDB文件名称
     <delete id="deleteLaws" >
         delete from laws where laws.lawsId=#{lawsId}
     </delete>
-    <select id="queryAllLawsId" resultType="String" >
+    <select id="queryAllLawsId" resultType="com.bdqn.tangcco.planedemo.entity.Laws" >
         SELECT lawsId FROM laws ORDER BY lawsPart
     </select>
 
