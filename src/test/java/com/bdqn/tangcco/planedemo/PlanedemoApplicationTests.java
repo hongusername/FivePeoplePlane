@@ -1,16 +1,15 @@
 package com.bdqn.tangcco.planedemo;
 
 import com.bdqn.tangcco.planedemo.admin.adminService.AdminService;
-import com.bdqn.tangcco.planedemo.entity.Admin;
-import com.bdqn.tangcco.planedemo.entity.Consult;
-import com.bdqn.tangcco.planedemo.entity.Leave;
+import com.bdqn.tangcco.planedemo.chen.service.ClauseService;
+import com.bdqn.tangcco.planedemo.entity.*;
 import com.bdqn.tangcco.planedemo.kai.services.LeaveServices;
-import com.bdqn.tangcco.planedemo.entity.User;
 import com.bdqn.tangcco.planedemo.xi.service.ConsultServices;
 import com.bdqn.tangcco.planedemo.xi.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
@@ -32,6 +31,8 @@ public class PlanedemoApplicationTests {
     private UserService userService;
     @Resource
     private ConsultServices consultServices;
+    @Resource
+    private ClauseService clauseService;
 
     @Test
     public void contextLoads() {
@@ -64,47 +65,54 @@ public class PlanedemoApplicationTests {
     public void testdelete() {
         System.out.println(adminService.deleteAdmin(4));
     }
+
     @Test
-    public void testupdate(){
+    public void testupdate() {
         /*SimpleDateFormat sm=new SimpleDateFormat("yyyy-MM-dd");
         String shijian="2018-12-12";
         Date shijian2=(new SimpleDateFormat("yyyy-MM-dd")).format(shijain);*/
-        System.out.println(adminService.updateAdmin(new Admin(5,0,"OK",0,"ok",null,0)));
+        System.out.println(adminService.updateAdmin(new Admin(5, 0, "OK", 0, "ok", null, 0)));
     }
+
     @Test
-    public void testSelect(){
-        Leave leave=new Leave();
+    public void testSelect() {
+        Leave leave = new Leave();
         leave.setLeaveId(6);
         leave.setLeaveStatus(4);
-        List<Leave> list=leaveServices.selectAllLeavte();
-        for(Leave l:list){
+        List<Leave> list = leaveServices.selectAllLeavte();
+        for (Leave l : list) {
             System.out.println(l);
         }
     }
+
     @Test
-    public void testQueryAllCon(){
-        List<Consult> list=consultServices.selectAllC();
-        for (Consult l:list){
+    public void testQueryAllCon() {
+        List<Consult> list = consultServices.selectAllC();
+        for (Consult l : list) {
             System.out.println(l);
         }
     }
+
     @Test
-    public void testInsertCOnsult(){
-        Consult con=new Consult();
+    public void testInsertCOnsult() {
+        Consult con = new Consult();
         con.setConsultClause(12);
         con.setConsultName("昔哥");
         con.setConsultPhone("120");
         con.setConsultText("我还能再抢救一下");
         con.setUserId(2);
-        System.out.println( consultServices.addConsult(con));;
+        System.out.println(consultServices.addConsult(con));
+        ;
     }
+
     @Test
-    public void testDelete(){
+    public void testDelete() {
         System.out.println(consultServices.deleteConsult(14));
     }
+
     @Test
-    public void testUpdateConsult(){
-        Consult consult=new Consult();
+    public void testUpdateConsult() {
+        Consult consult = new Consult();
         consult.setConsultId(11);
         consult.setConsultStatus(8);
         System.out.println(consultServices.updateConsultStatus(consult));
@@ -117,6 +125,34 @@ public class PlanedemoApplicationTests {
             System.out.println(u);
         }
     }
+
+    /*测试条款表*/
+    @Test
+    public void testCLauseList() {
+        Clause cla = new Clause();
+        cla.setClauseKeyword("dasd");
+        cla.setLawsId(1);
+        cla.setClauseNumber(123);
+        for (Clause c : clauseService.getClausesList(cla, 1, 5).getList()) {
+            System.out.println(c);
+        }
+    }
+
+    @Test
+    public void testUpdate() {
+        Clause cla = new Clause();
+        //cla.setClauseId(1);
+        cla.setClauseKeyword("dasd");
+        cla.setLawsId(1);
+        cla.setClauseNumber(123);
+        clauseService.updateClause(cla);
+    }
+
+    @Test
+    public void testClasuseQuery() {
+        System.out.println(clauseService.queryCLause(1));
+    }
+
 
 }
 
