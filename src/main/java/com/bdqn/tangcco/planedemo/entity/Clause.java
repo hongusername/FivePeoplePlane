@@ -24,4 +24,5 @@ public class Clause {
     private String claseTitle;
     private String clauseText;
     private String clauseKeyword;
+    private Laws laws;
 }
