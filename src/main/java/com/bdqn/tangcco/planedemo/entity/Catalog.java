@@ -3,7 +3,7 @@ package com.bdqn.tangcco.planedemo.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import lombok.RequiredArgsConstructor;
 
 /**
  * @program: planedemo
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
  * @author: ShiDunKai
  * @create: 2019-01-15 16:58
  **/
-@Data
+@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 public class Catalog {
