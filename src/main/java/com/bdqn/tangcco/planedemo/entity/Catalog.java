@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Catalog {
     private Integer catalogId;//目录id
     private String cataLaws;//所属法规
