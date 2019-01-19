@@ -1,5 +1,6 @@
 package com.bdqn.tangcco.planedemo.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +13,7 @@ import lombok.RequiredArgsConstructor;
  **/
 @NoArgsConstructor
 @Data
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class Clause {
     private Integer clauseId;
     private Integer cateLogid;
