@@ -56,4 +56,9 @@ public class LawsServicesImpl implements LawsServices {
     public Laws queryOneByLawId(String lawId) {
         return ld.queryOneByLawId(lawId);
     }
+
+    @Override
+    public List<String> queryAllLawsId() {
+        return ld.queryAllLawsId();
+    }
 }

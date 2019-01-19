@@ -22,6 +22,7 @@
         </where>
     </select>
 
+
     <select id="queryByLawsId" resultType="Boolean">
       select * from laws where lawId=#{param1}
     </select>
@@ -86,6 +87,9 @@ lawsFDBName     varchar(30) NOT NULL法规FDB文件名称
     <delete id="deleteLaws" >
         delete from laws where laws.lawsId=#{lawsId}
     </delete>
+    <select id="queryAllLawsId" resultType="String" >
+        SELECT lawsId FROM laws ORDER BY lawsPart
+    </select>
 
 
 

@@ -68,6 +68,9 @@ public interface LawsDao {
      *return Integer
      * */
     Integer deleteLaws(String lawsId);
-
-
+    /*
+    * 2019年1月19日14点37分
+    * 查询所有主键
+    * */
+    List<String> queryAllLawsId();
 }
