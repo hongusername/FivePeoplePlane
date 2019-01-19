@@ -28,6 +28,8 @@ public class PlanedemoApplicationTests {
     @Resource
     private LeaveServices leaveServices;
     @Resource
+    private UserService userService;
+    @Resource
     private ConsultServices consultServices;
     @Resource
     private ClauseService clauseService;
@@ -114,6 +116,14 @@ public class PlanedemoApplicationTests {
         consult.setConsultId(11);
         consult.setConsultStatus(8);
         System.out.println(consultServices.updateConsultStatus(consult));
+    }
+    @Test
+    public void testQueryUserSome(){
+        String phone="1";
+        List<User> list=userService.querySome(phone);
+        for(User u:list){
+            System.out.println(u);
+        }
     }
 
     /*测试条款表*/

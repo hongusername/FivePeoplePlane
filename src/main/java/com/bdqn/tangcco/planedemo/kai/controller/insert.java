@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @program: planedemo
- * @description: ${description}
+ * @description: 页面跳转controller
  * @author: ShiDunKai
  * @create: 2019-01-17 15:16
  **/

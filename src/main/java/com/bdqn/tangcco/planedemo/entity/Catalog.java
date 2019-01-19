@@ -2,7 +2,8 @@ package com.bdqn.tangcco.planedemo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
+
 
 /**
  * @program: planedemo
@@ -10,14 +11,14 @@ import lombok.RequiredArgsConstructor;
  * @author: ShiDunKai
  * @create: 2019-01-15 16:58
  **/
-@RequiredArgsConstructor
-@AllArgsConstructor
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Catalog {
-    private Integer catalogId;
-    private String cataLaws;
-    private String cataText;
-    private Integer cateGrade;
-    private Integer cateRank;
-    private Integer cateNumber;
+    private Integer catalogId;//目录id
+    private String cataLaws;//所属法规
+    private String cateText;//目录标题
+    private Integer cateGrade;//目录层级
+    private Integer cateRank;//上级目录id
+    private Integer cateNumber;//同级序号
 }
