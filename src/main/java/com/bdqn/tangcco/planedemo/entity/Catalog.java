@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
  * @author: ShiDunKai
  * @create: 2019-01-15 16:58
  **/
-@RequiredArgsConstructor
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
