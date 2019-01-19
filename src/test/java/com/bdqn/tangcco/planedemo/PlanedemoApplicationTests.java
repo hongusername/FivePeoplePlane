@@ -112,7 +112,7 @@ public class PlanedemoApplicationTests {
     @Test
     public void testQueryUserSome(){
         String phone="1";
-        List<User> list=userService.querySome(phone);
+        List<User> list=userService.querySome(phone,1,2).getList();
         for(User u:list){
             System.out.println(u);
         }

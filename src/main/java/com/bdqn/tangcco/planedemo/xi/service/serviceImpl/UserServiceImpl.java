@@ -3,6 +3,8 @@ package com.bdqn.tangcco.planedemo.xi.service.serviceImpl;
 import com.bdqn.tangcco.planedemo.entity.User;
 import com.bdqn.tangcco.planedemo.xi.dao.UserDao;
 import com.bdqn.tangcco.planedemo.xi.service.UserService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,14 +15,21 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
 
+
     @Override
-    public List<User> querySome(String phone) {
-        return userDao.querySome(phone);
+    public PageInfo<User> querySome(String phone, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<User> list=userDao.querySome(phone);
+        PageInfo<User> pageInfo=new PageInfo<>(list);
+        return pageInfo;
     }
 
     @Override
-    public List<User> queryUser() {
-        return userDao.queryUser();
+    public PageInfo<User> queryUser(Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<User> list=userDao.queryUser();
+        PageInfo<User> pageInfo=new PageInfo<>(list);
+        return pageInfo;
     }
 
     @Override
