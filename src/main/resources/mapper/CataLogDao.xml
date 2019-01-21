@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bdqn.tangcco.planedemo.hui.dao.CataLogDao">
+    <insert id="addCata">
+    INSERT INTO Catalog VALUES(NULL,#{c.cataLaws},#{c.cateText},#{c.cateGrade},#{c.cateRank},#{c.cateNumber})
+    </insert>
+</mapper>

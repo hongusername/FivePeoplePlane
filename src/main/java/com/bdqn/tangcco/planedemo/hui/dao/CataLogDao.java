@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface CataLogDao {
     /**
-     * 组合查询，根据所属法规来查询目录
+     * 根据所属法规来查询目录，分类
      *
      * @return
      */
@@ -31,12 +31,11 @@ public interface CataLogDao {
     Catalog queryCataById(@Param("pk") Integer pk);
 
     /**
-     * 新增法规
+     * 新增目录
      *
      * @param catalog
      * @return
      */
-    @Insert("insert into Catalog Values(null,#{c.cataLaws},#{c.cateText},#{c.cateGrade},#{c.cateRank},#{c.cateNumber})")
     Integer addCata(@Param("c") Catalog catalog);
 
     /**

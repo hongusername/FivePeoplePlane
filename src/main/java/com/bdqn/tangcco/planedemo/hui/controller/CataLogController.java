@@ -37,4 +37,29 @@ public class CataLogController {
         return this.cataLogService.deleteCata(pk);
     }
 
+    /**
+     * 去增加页面，需要查询出所有的法规，然后查出所选法规下面的所有目录
+     * @return
+     */
+    @GetMapping("/toaddcata")
+    public Object toAdd() {
+        //查询所有法规
+
+        return null;
+    }
+
+    /**
+     * 执行新增操作，判断是否增加成功
+     * @param catalog
+     * @return
+     */
+    @PostMapping("/addcata")
+    public Object doAdd(Catalog catalog) {
+        int i=this.cataLogService.addCata(catalog);
+        if(i>0){
+            return "新增成功！";
+        }else {
+            return "添加失败！";
+        }
+    }
 }

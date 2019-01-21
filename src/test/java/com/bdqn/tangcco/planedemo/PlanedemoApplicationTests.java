@@ -3,6 +3,7 @@ package com.bdqn.tangcco.planedemo;
 import com.bdqn.tangcco.planedemo.admin.adminService.AdminService;
 import com.bdqn.tangcco.planedemo.chen.service.ClauseService;
 import com.bdqn.tangcco.planedemo.entity.*;
+import com.bdqn.tangcco.planedemo.hui.service.CataLogService;
 import com.bdqn.tangcco.planedemo.kai.services.LeaveServices;
 import com.bdqn.tangcco.planedemo.xi.service.ConsultServices;
 import com.bdqn.tangcco.planedemo.xi.service.UserService;
@@ -33,6 +34,13 @@ public class PlanedemoApplicationTests {
     private ConsultServices consultServices;
     @Resource
     private ClauseService clauseService;
+    @Resource
+    private CataLogService cataLogService;
+
+    @Test
+    public void testAdd() {
+        this.cataLogService.addCata(new Catalog(null,"CARE-23-R1","操纵性和机动性==",1,0,1));
+    }
 
     @Test
     public void contextLoads() {
@@ -117,16 +125,15 @@ public class PlanedemoApplicationTests {
         consult.setConsultStatus(8);
         System.out.println(consultServices.updateConsultStatus(consult));
     }
+
     @Test
-    public void testQueryUserSome(){
-        String phone="1";
-        List<User> list=userService.querySome(phone,1,2).getList();
-        for(User u:list){
+    public void testQueryUserSome() {
+        String phone = "1";
+        List<User> list = userService.querySome(phone, 1, 2).getList();
+        for (User u : list) {
             System.out.println(u);
         }
     }
-
-
 
 
     /*测试条款表*/
