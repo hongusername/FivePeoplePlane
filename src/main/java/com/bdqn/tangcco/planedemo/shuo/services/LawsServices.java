@@ -21,4 +21,5 @@ public interface LawsServices {
     Integer updateLaws(Laws laws);
     Integer deleteLaws(String lawsId);
     Laws queryOneByLawId(String lawId);
+    List<Laws> queryAllLawsId();
 }
