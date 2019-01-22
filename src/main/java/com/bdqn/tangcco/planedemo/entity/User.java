@@ -1,5 +1,6 @@
 package com.bdqn.tangcco.planedemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +29,7 @@ public class User {
    private String userPhone;
    private String userPassword;
    private int userType;
+   @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
    private Date userDate;
    private int userStatus;
 

@@ -15,7 +15,7 @@
             <form method="post" action="UserSelect">
                 <label class="ziti">
                     手机号:
-                    <input placeholder="手机号" class="layui-input x-input" type="text" name="phone">
+                    <input placeholder="手机号" class="layui-input x-input" type="text" name="phone" th:value="${phone}" id="phone">
                 </label>
                 <button class="layui-btn layui-btn-primary x-btn" >搜索</button>
             </form>
@@ -31,8 +31,8 @@
                     <th>注册日期</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr th:each="user : ${userList}">
+                <tbody id="listHtml">
+                <!--<tr th:each="user : ${userList}">
                     <td th:text="${user.userPhone}"></td>
                     <td class="layui-form" th:switch="${user.userStatus}">
                         <div class="layui-input-block" style="margin-left: 0px">
@@ -41,7 +41,7 @@
                         </div>
                     </td>
                     <td th:text="${#dates.format(user.getUserDate(), 'yyyy-MM-dd')}"></td>
-                </tr>
+                </tr>-->
                 </tbody>
             </table>
             <div id="page" class="fenye">
@@ -50,24 +50,71 @@
         </div>
     </footer>
 </div>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="layui/layui.js"></script>
 <script>
-    layui.use('form',function () {
-        var form = layui.form;
-    })
-    layui.use(['laypage','layer'],function () {
-        var laypage = layui.laypage;
-        laypage.render({
-            elem: 'page'
-            ,count: total//总数
-            ,limit:pageSize//行数
-            ,curr:pageNum//页数
-            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
-            ,jump: function(obj){
+    //使用js获取信息
+    $(function(){
+        alert("[[${userList.total}]]")
+        /*var pageNum=1;
+        var pageSize=2;*/
+        //定义一个获取列表的函数
 
-            }
-        });
+        layui.use('form',function () {
+            var form = layui.form;
+        })
+        layui.use(['laypage','layer'],function () {
+             var laypage = layui.laypage,layer=layui.layer;
+             laypage.render({
+                 elem: 'page'
+                 ,count: "[[${userList.total}]]"//总数
+                 ,limit:"[[${userList.pageSize}]]"//行数
+                 ,curr:"[[${userList.pageNum}]]"//页数
+                 ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                 ,jump: function(obj,first){
+                         var phone=$("#phone").val();
+                         $.ajax({
+                             type:'POST',
+                             url:"UserSelectAjax",
+                             data:{
+                                 pageNum:obj.curr,
+                                 pageSize:obj.limit,
+                                 phone:phone
+                             },
+                             dataType:'json',
+                             success:function(list){
+                                 if(list.list.length!=0){
+                                     var total=list.pages;
+                                     var html='';
+                                     var typeText='';
+                                     for(var i=0;i<list.list.length;i++){
+                                         var type=list.list[i].userType;
+                                         if(type==0){
+                                             typeText='<input type="radio" value="0" title="免费" checked >\n';
+                                         }else{
+                                             typeText='<input type="radio" value="1" title="付费" checked >\n';
+                                         }
+                                         var htmlBuff='<tr>' +
+                                             '<td>'+list.list[i].userPhone+'</td>' +
+                                             '<td class="layui-form"> ' +
+                                             '<div class="layui-input-block" style="margin-left: 0px">\n' +typeText+ '</div>' +
+                                             '</td>' +
+                                             '<td>'+list.list[i].userDate+'</td>' +
+                                             '</tr>';
+                                         html=html+htmlBuff;
+                                     }
+                                     $('#listHtml').html(html);
+                                 }
+                             }
+                         })
+                     }
+             });
+         })
     })
+
+
+
+
 </script>
 </body>
 </html>
