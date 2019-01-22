@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ConsultServices {
     //查询所有咨询信息 List<Consult> selectAllC(@Param("phone") String phone,@Param("text") String text);
-    PageInfo<Consult> selectAllC(@Param("phone") String phone, @Param("text") String text, Integer pageNum, Integer pageSize);
+    PageInfo<Consult> selectAllC(String phone,String text, Integer pageNum, Integer pageSize);
     //新增查询信息
     Integer addConsult(Consult consult);
     //根据Id删除咨询信息
