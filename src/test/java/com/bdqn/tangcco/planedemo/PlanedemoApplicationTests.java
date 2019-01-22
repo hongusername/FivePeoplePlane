@@ -93,13 +93,13 @@ public class PlanedemoApplicationTests {
         }
     }
 
-    @Test
+  /*  @Test
     public void testQueryAllCon() {
-        List<Consult> list = consultServices.selectAllC();
+        List<Consult> list = consultServices.selectAllC(1,3);
         for (Consult l : list) {
             System.out.println(l);
         }
-    }
+    }*/
 
     @Test
     public void testInsertCOnsult() {
@@ -162,6 +162,15 @@ public class PlanedemoApplicationTests {
     public void testClasuseQuery() {
         System.out.println(clauseService.queryCLause(1));
     }
+
+    @Test
+    public void testQuery12(){
+        System.out.println(consultServices.selectAllC("110","抢救一下",1,10).getSize());
+    }
+
+
+
+
 
 
 }

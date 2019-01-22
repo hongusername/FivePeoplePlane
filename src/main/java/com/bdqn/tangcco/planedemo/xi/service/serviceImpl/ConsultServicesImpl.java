@@ -1,8 +1,11 @@
 package com.bdqn.tangcco.planedemo.xi.service.serviceImpl;
 
 import com.bdqn.tangcco.planedemo.entity.Consult;
+import com.bdqn.tangcco.planedemo.entity.User;
 import com.bdqn.tangcco.planedemo.xi.dao.ConsultDao;
 import com.bdqn.tangcco.planedemo.xi.service.ConsultServices;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,8 +17,12 @@ public class ConsultServicesImpl implements ConsultServices {
     private ConsultDao consultDao;
 
     @Override
-    public List<Consult> selectAllC() {
-        return consultDao.selectAllC();
+    public PageInfo<Consult> selectAllC(String phone,String text,Integer pageNum,Integer pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        System.out.println(phone+text);
+        List<Consult> list=consultDao.selectAllC(phone,text);
+        PageInfo<Consult> pageInfo=new PageInfo<>(list);
+        return pageInfo;
     }
 
     @Override

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ConsultDao {
     //查询所有咨询信息
-    List<Consult> selectAllC();
+    List<Consult> selectAllC(@Param("phone") String phone,@Param("text") String text);
     //新增查询信息
     Integer addConsult(@Param("consult") Consult consult);
     //根据Id删除咨询信息
