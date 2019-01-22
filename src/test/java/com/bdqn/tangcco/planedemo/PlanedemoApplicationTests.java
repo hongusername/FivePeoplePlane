@@ -125,16 +125,14 @@ public class PlanedemoApplicationTests {
         consult.setConsultStatus(8);
         System.out.println(consultServices.updateConsultStatus(consult));
     }
-
     @Test
-    public void testQueryUserSome() {
-        String phone = "1";
-        List<User> list = userService.querySome(phone, 1, 2).getList();
-        for (User u : list) {
+    public void testQueryUserSome(){
+        String phone="1";
+        List<User> list=userService.querySome(phone,1,2).getList();
+        for(User u:list){
             System.out.println(u);
         }
     }
-
 
     /*测试条款表*/
     @Test
