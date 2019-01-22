@@ -93,13 +93,13 @@ public class PlanedemoApplicationTests {
         }
     }
 
-    @Test
+  /*  @Test
     public void testQueryAllCon() {
-        List<Consult> list = consultServices.selectAllC();
+        List<Consult> list = consultServices.selectAllC(1,3);
         for (Consult l : list) {
             System.out.println(l);
         }
-    }
+    }*/
 
     @Test
     public void testInsertCOnsult() {
@@ -125,16 +125,14 @@ public class PlanedemoApplicationTests {
         consult.setConsultStatus(8);
         System.out.println(consultServices.updateConsultStatus(consult));
     }
-
     @Test
-    public void testQueryUserSome() {
-        String phone = "1";
-        List<User> list = userService.querySome(phone, 1, 2).getList();
-        for (User u : list) {
+    public void testQueryUserSome(){
+        String phone="1";
+        List<User> list=userService.querySome(phone,1,2).getList();
+        for(User u:list){
             System.out.println(u);
         }
     }
-
 
     /*测试条款表*/
     @Test
@@ -162,6 +160,15 @@ public class PlanedemoApplicationTests {
     public void testClasuseQuery() {
         System.out.println(clauseService.queryCLause(1));
     }
+
+    @Test
+    public void testQuery12(){
+        System.out.println(consultServices.selectAllC("110","抢救一下",1,10).getSize());
+    }
+
+
+
+
 
 
 }

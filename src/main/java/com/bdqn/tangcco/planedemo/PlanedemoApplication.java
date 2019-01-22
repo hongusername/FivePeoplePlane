@@ -6,12 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("com.bdqn.tangcco.planedemo.*.dao")
-
 public class PlanedemoApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(PlanedemoApplication.class, args);
     }
-
 }
 

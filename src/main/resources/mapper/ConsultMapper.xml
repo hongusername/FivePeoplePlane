@@ -10,7 +10,18 @@
     //更新咨询状态
     Integer updateConsultStatus(@Param("consult") Consult consult);-->
    <select id="selectAllC" resultType="com.bdqn.tangcco.planedemo.entity.Consult">
-       select * from `Consult`
+       SELECT * FROM Consult
+       <where>
+           <!--<if test="phone!=null and phone!='' and text!=null and text!=''">
+               consultText LIKE concat('%',#{phone},'%') AND consultPhone LIKE concat('%',#{text},'%')
+           </if>-->
+           <if test="phone!=null and phone!='' ">
+              and consultPhone LIKE concat ('%',#{phone},'%')
+           </if>
+           <if test="  text!=null and text!=''">
+              and consultText LIKE concat ('%',#{text},'%')
+           </if>
+       </where>
    </select>
     <insert id="addConsult" parameterType="com.bdqn.tangcco.planedemo.entity.Consult">
         INSERT INTO `Consult` VALUES(NULL,#{consult.consultName},#{consult.consultPhone},NULL,#{consult.consultClause},#{consult.consultText},#{consult.userId},NULL)
