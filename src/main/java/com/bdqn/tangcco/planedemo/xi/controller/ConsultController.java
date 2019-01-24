@@ -35,6 +35,15 @@ public class ConsultController {
     }
 
 
+    @RequestMapping("AjaxDelete")
+    public String delete(int consultId,Map map){
+        map.put("Delete",consultServices.deleteConsult(consultId));
+        System.out.print("Delete"+consultId);
+         return "redirect:/selectAll";
+    }
+
+
+
 
 
 

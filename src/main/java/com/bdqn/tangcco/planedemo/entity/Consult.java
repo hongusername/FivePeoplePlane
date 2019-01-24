@@ -1,5 +1,6 @@
 package com.bdqn.tangcco.planedemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class Consult {
     private int consultId;
     private String consultName;
     private String consultPhone;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "GMT+8")
     private Date consultTime;
     private int consultClause;
     private String consultText;
