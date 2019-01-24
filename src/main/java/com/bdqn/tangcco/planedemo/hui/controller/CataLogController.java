@@ -22,10 +22,6 @@ public class CataLogController {
         return this.cataLogService.queryCataById(pk);
     }
 
-    @GetMapping("/get2")
-    public Object get2(String fk) {
-        return this.cataLogService.queryCataAll(fk);
-    }
 
     @PostMapping("/add1")
     public Object add1(Catalog catalog) {
