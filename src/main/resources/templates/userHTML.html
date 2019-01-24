@@ -22,7 +22,7 @@
         </div>
     </header>
     <footer>
-        <div>
+        <div class="layui-form">
             <table class="layui-table" style="word-break:break-all; word-wrap: break-word">
                 <thead>
                 <tr>
@@ -32,7 +32,7 @@
                 </tr>
                 </thead>
                 <tbody id="listHtml">
-                <!--<tr th:each="user : ${userList}">
+                <!-- <tr th:each="user : ${userList}">
                     <td th:text="${user.userPhone}"></td>
                     <td class="layui-form" th:switch="${user.userStatus}">
                         <div class="layui-input-block" style="margin-left: 0px">
@@ -50,20 +50,22 @@
         </div>
     </footer>
 </div>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="layui/layui.js"></script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+
 <script>
     //使用js获取信息
     $(function(){
+
         alert("[[${userList.total}]]")
         /*var pageNum=1;
         var pageSize=2;*/
         //定义一个获取列表的函数
 
-        layui.use('form',function () {
-            var form = layui.form;
-        })
-        layui.use(['laypage','layer'],function () {
+
+        layui.use(['laypage','layer','form'],function () {
+            var form=layui.form;
+            form.render();
              var laypage = layui.laypage,layer=layui.layer;
              laypage.render({
                  elem: 'page'
@@ -90,14 +92,14 @@
                                      for(var i=0;i<list.list.length;i++){
                                          var type=list.list[i].userType;
                                          if(type==0){
-                                             typeText='<input type="radio" value="0" title="免费" checked >\n';
+                                             typeText='<input type="radio"  value="0" title="免费" checked >\n';
                                          }else{
-                                             typeText='<input type="radio" value="1" title="付费" checked >\n';
+                                             typeText='<input type="radio"  value="1" title="付费" checked >\n';
                                          }
                                          var htmlBuff='<tr>' +
                                              '<td>'+list.list[i].userPhone+'</td>' +
                                              '<td class="layui-form"> ' +
-                                             '<div class="layui-input-block" style="margin-left: 0px">\n' +typeText+ '</div>' +
+                                             '<div class="layui-input-block" style="margin-left: 0px">' +typeText+ '</div>' +
                                              '</td>' +
                                              '<td>'+list.list[i].userDate+'</td>' +
                                              '</tr>';
@@ -105,12 +107,15 @@
                                      }
                                      $('#listHtml').html(html);
                                  }
+                                 form.render();
                              }
                          })
+
                      }
              });
          })
     })
+
 
 
 

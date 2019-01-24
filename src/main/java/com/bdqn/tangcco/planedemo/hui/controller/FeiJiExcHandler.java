@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServletRequest;
  * @Date: 2019/1/22 14:04
  * @Description: 异常处理类
  */
-//@RestControllerAdvice
+@RestControllerAdvice
 public class FeiJiExcHandler {
     private Logger logger = LoggerFactory.getLogger(FeiJiExcHandler.class);
 
-    // @ExceptionHandler(Exception.class)
+    @ExceptionHandler(Exception.class)
     public Object defaultErrorHandler(HttpServletRequest request, Exception e) {
         logger.error("", e);
         MyException me = new MyException();
