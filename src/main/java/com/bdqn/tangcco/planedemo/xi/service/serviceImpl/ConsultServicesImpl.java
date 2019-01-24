@@ -19,7 +19,7 @@ public class ConsultServicesImpl implements ConsultServices {
     @Override
     public PageInfo<Consult> selectAllC(String phone,String text,Integer pageNum,Integer pageSize) {
         PageHelper.startPage(pageNum,pageSize);
-        System.out.println(phone+text);
+        System.out.println("这是serimpl接口"+phone+text );
         List<Consult> list=consultDao.selectAllC(phone,text);
         PageInfo<Consult> pageInfo=new PageInfo<>(list);
         return pageInfo;

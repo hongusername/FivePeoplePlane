@@ -12,15 +12,15 @@
     <header>
         <div class="daohang">咨询管理 / 咨询列表</div>
         <div class="title">咨询列表</div>
-        <form action="selectAll" method="get">
+        <form action="selectAll"  >
             <div class="content">
                 <label class="ziti">
                     联系方式:
-                    <input placeholder="手机号" name="phone" class="layui-input x-input" type="text">
+                    <input placeholder="手机号" name="phone" id="phooneId" class="layui-input x-input" type="text" th:value="${phone}">
                 </label>
                 <label class="ziti">
                     咨询内容:
-                    <input class="layui-input x-input" name="text" type="text">
+                    <input class="layui-input x-input" name="text" id="TestId" type="text" th:value="${text}">
                 </label>
                 <button class="layui-btn layui-btn-primary x-btn">搜索</button>
             </div>
@@ -42,8 +42,8 @@
                     </tr>
                 </thead>
 
-                <tbody>
-                <tr th:each="consult : ${ConsultList.list}">
+                <tbody id="listConsult">
+                <!--<tr th:each="consult : ${ConsultList.list}">
                     <th th:text="${consult.consultId}">咨询编号</th>
                     <th th:text="${consult.consultName}">咨询者姓名</th>
                     <th th:text="${consult.consultPhone}">咨询者电话</th>
@@ -55,7 +55,7 @@
                         <a href="" class="caozuo">编辑</a>
                         <a href="" class="caozuo">删除</a>
                     </td>
-                </tr>
+                </tr>-->
 
 
 
@@ -68,16 +68,65 @@
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="layui/layui.js"></script>
 <script>
+    $(function(){
+    layui.use('form',function () {
+        var form = layui.form;
+    })
     layui.use(['laypage','layer'],function () {
-        var laypage = layui.laypage;
+        var laypage = layui.laypage,layer=layui.layer;
         laypage.render({
             elem: 'page'
-            ,count: 100
+            ,count: "[[${ConsultList.total}]]"
+            ,limit:"[[${ConsultList.pageSize}]]"
+            ,curr:"[[${ConsultList.pageNum}]]"
             ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
             ,jump: function(obj){
+                var text=$("#TestId").val();
+                var phone=$("#phooneId").val();
+                //回调函数
+                $.ajax({
+                    type:'POST',
+                    url:"AjaxConsult",
+                    data:{
+                        pageNum:obj.curr,
+                        pageSize:obj.limit,
+                        phone:phone,
+                        text:text
+                    },
+                    dataType:'json',
+                    success:function(feng){
+                        var total=feng.pages;
+                        var html="";
+                        if(feng.list.length!=0){
+                            for(var i=0;i<feng.list.length;i++){
+                                var htmlBuffer="<tr >\n" +
+                                    "                    <th >"+feng.list[i].consultId+"</th>\n" +
+                                    "                    <th >"+feng.list[i].consultName+"</th>\n" +
+                                    "                    <th >"+feng.list[i].consultPhone+"</th>\n" +
+                                    "                    <th >"+feng.list[i].consultTime+"</th>\n" +
+                                    "                    <th >"+feng.list[i].consultClause+"</th>\n" +
+                                    "                    <th >"+feng.list[i].consultText+"</th>\n" +
+                                    "                    <th >"+feng.list[i].consultStatus+"</th>\n" +
+                                    "                    <td>\n" +
+                                    "                        <a href=\"\" class=\"caozuo\">编辑</a>\n" +
+                                    "                        <a href=\"AjaxDelete?consultId="+feng.list[i].consultId+"\" class=\"caozuo\">删除</a>\n" +
+                                    "                    </td>\n" +
+                                    "                </tr>"
+
+                                html=html+htmlBuffer;
+                            }
+                            $("#listConsult").html(html);
+                        }
+                    }
+                })
             }
         });
     })
+    })
+
+
+
+
 
 </script>
 </body>
