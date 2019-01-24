@@ -52,17 +52,13 @@
 </div>
 <script src="layui/layui.js"></script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-
 <script>
     //使用js获取信息
     $(function(){
-
         alert("[[${userList.total}]]")
         /*var pageNum=1;
         var pageSize=2;*/
         //定义一个获取列表的函数
-
-
         layui.use(['laypage','layer','form'],function () {
             var form=layui.form;
             form.render();
@@ -110,7 +106,6 @@
                                  form.render();
                              }
                          })
-
                      }
              });
          })
