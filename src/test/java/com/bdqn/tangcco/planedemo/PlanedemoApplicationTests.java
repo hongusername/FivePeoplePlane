@@ -7,6 +7,7 @@ import com.bdqn.tangcco.planedemo.hui.service.CataLogService;
 import com.bdqn.tangcco.planedemo.kai.services.LeaveServices;
 import com.bdqn.tangcco.planedemo.xi.service.ConsultServices;
 import com.bdqn.tangcco.planedemo.xi.service.UserService;
+import com.github.pagehelper.PageInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -39,7 +41,7 @@ public class PlanedemoApplicationTests {
 
     @Test
     public void testAdd() {
-        this.cataLogService.addCata(new Catalog(null,"CARE-23-R1","操纵性和机动性==",1,0,1));
+        this.cataLogService.addCata(new Catalog(null, "CARE-23-R1", "操纵性和机动性==", 1, 0, 1));
     }
 
     @Test
@@ -125,11 +127,12 @@ public class PlanedemoApplicationTests {
         consult.setConsultStatus(8);
         System.out.println(consultServices.updateConsultStatus(consult));
     }
+
     @Test
-    public void testQueryUserSome(){
-        String phone="1";
-        List<User> list=userService.querySome(phone,1,2).getList();
-        for(User u:list){
+    public void testQueryUserSome() {
+        String phone = "1";
+        List<User> list = userService.querySome(phone, 1, 2).getList();
+        for (User u : list) {
             System.out.println(u);
         }
     }
@@ -162,12 +165,18 @@ public class PlanedemoApplicationTests {
     }
 
     @Test
-    public void testQuery12(){
-        System.out.println(consultServices.selectAllC("110","抢救一下",1,10).getSize());
+    public void testQuery12() {
+        System.out.println(consultServices.selectAllC("110", "抢救一下", 1, 10).getSize());
     }
 
-
-
+    @Test
+    public void testlistCatalog() {
+        PageInfo<Catalog> pageInfo=this.cataLogService.listCatalogAll(1,5);
+        System.out.println(pageInfo.getPageSize());
+        for (Catalog c:pageInfo.getList()){
+            System.out.println(c);
+        }
+    }
 
 
 

@@ -46,4 +46,21 @@ public interface CataLogDao {
      */
     @Delete("delete from Catalog where catalogId=#{pk}")
     Integer deleteCata(@Param("pk") Integer pk);
+
+    /**
+     * 查询所有目录
+     *
+     * @return
+     */
+    @Select("select * from catalog")
+    List<Catalog> listCatalog();
+
+    /**
+     * 查询目录
+     *
+     * @return
+     */
+    @Select("SELECT * FROM catalog WHERE cateRank =#{cateRank}")
+    List<Catalog> listCatalogByCateRank(@Param("cateRank") Integer cateRank);
+
 }
