@@ -1,6 +1,7 @@
 package com.bdqn.tangcco.planedemo.hui.service;
 
 import com.bdqn.tangcco.planedemo.entity.Catalog;
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  * @Description:
  */
 public interface CataLogService {
-    List<Catalog> queryCataAll(String fk);
+    PageInfo<Catalog> queryCataAll(String fk,Integer pageNumber);
 
     Catalog queryCataById(Integer pk);
 
